@@ -26,16 +26,16 @@ const WaybillPreview = forwardRef<HTMLDivElement, WaybillPreviewProps>(
     return (
       <div
         ref={ref}
-        className="w-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm print:border-black print:shadow-none"
+        className="w-full max-w-[900px] rounded-xl border border-slate-200 bg-white p-10 shadow-sm print:max-w-none print:border-black print:px-12 print:shadow-none"
       >
         <header className="flex flex-col gap-4 border-b border-dashed border-slate-300 pb-4 md:flex-row md:items-start md:justify-between">
           <div className="flex gap-4">
-            <div className="relative hidden h-20 w-20 shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-slate-50 md:block">
+            <div className="relative hidden h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-slate-50 md:block">
               <Image
                 src={COMPANY_LOGO_PATH}
                 alt={`${COMPANY_DETAILS.name} logo`}
                 fill
-                className="object-contain p-3"
+                className="object-contain p-4"
                 priority
               />
             </div>
@@ -63,14 +63,16 @@ const WaybillPreview = forwardRef<HTMLDivElement, WaybillPreviewProps>(
               <p className="text-xs uppercase tracking-widest text-slate-500">
                 Official Document
               </p>
-              <p className="text-3xl font-semibold text-slate-900">WAYBILL</p>
-              <p className="mt-1 rounded-md bg-slate-100 px-3 py-1 text-sm font-semibold uppercase tracking-wide text-slate-800">
+              <p className="text-4xl font-semibold tracking-wide text-slate-900">
+                WAYBILL
+              </p>
+              <p className="mt-2 rounded-md bg-slate-100 px-4 py-1 text-base font-semibold uppercase tracking-wide text-slate-800">
                 {data.waybillNumber}
               </p>
             </div>
             <QRCode
               value={data.waybillNumber}
-              size={80}
+              size={96}
               bgColor="#ffffff"
               fgColor="#0f172a"
             />
