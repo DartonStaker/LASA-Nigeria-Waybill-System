@@ -2,12 +2,13 @@
 
 import { useEffect, useMemo } from "react";
 import {
-  type Resolver,
   type UseFormRegister,
   useFieldArray,
   useForm,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import type { Resolver } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
 
@@ -28,8 +29,13 @@ export default function WaybillForm({
   isFetchingWaybillNumber,
   fetchError,
 }: WaybillFormProps) {
+  const resolver = useMemo(
+    () => zodResolver(waybillSchema) as Resolver<WaybillFormValues>,
+    [],
+  );
+
   const form = useForm<WaybillFormValues>({
-    resolver: zodResolver(waybillSchema) as Resolver<WaybillFormValues>,
+    resolver,
     mode: "onChange",
     defaultValues: initialValues,
   });
