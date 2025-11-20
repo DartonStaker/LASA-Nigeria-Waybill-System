@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import useSWR from "swr";
 
 import {
@@ -26,9 +26,11 @@ const fetcher = async (input: string) => {
 };
 
 export default function WaybillWorkspace() {
-  const [fallbackNumber] = useState(() => fallbackWaybillNumber());
+  const [fallbackNumber, setFallbackNumber] = useState(() =>
+    formatWaybillNumber(0),
+  );
   const [formValues, setFormValues] = useState<WaybillFormValues>(() =>
-    createDefaultWaybillValues(fallbackNumber),
+    createDefaultWaybillValues(formatWaybillNumber(0)),
   );
 
   const previewRef = useRef<HTMLDivElement>(null);
@@ -40,6 +42,12 @@ export default function WaybillWorkspace() {
       revalidateOnFocus: false,
     },
   );
+
+  useEffect(() => {
+    // Generate a client-side fallback number post-hydration to keep SSR output deterministic.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setFallbackNumber(fallbackWaybillNumber());
+  }, []);
 
   const waybillNumber = data?.waybillNumber ?? fallbackNumber;
 
