@@ -57,4 +57,28 @@
   .form-textarea {
     @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200;
   }
+
+  .waybill-sheet {
+    width: min(100%, 794px);
+    margin-inline: auto;
+    border-radius: 20px;
+    padding: 32px;
+    background-color: #ffffff;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    .waybill-sheet {
+      padding: 20px;
+    }
+  }
+
+  @media print {
+    .waybill-sheet {
+      width: 210mm;
+      margin: 0 auto;
+      padding: 18mm;
+      border-radius: 18px;
+    }
+  }
 }

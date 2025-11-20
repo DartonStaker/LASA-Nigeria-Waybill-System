@@ -26,7 +26,7 @@ const WaybillPreview = forwardRef<HTMLDivElement, WaybillPreviewProps>(
     return (
       <div
         ref={ref}
-        className="w-full rounded-xl border border-slate-200 bg-white px-8 py-10 shadow-sm print:border-black print:px-12 print:py-12 print:shadow-none"
+        className="waybill-sheet border border-slate-200 shadow-sm print:border-black print:shadow-none"
       >
         <header className="flex flex-col gap-4 border-b border-dashed border-slate-300 pb-4 md:flex-row md:items-start md:justify-between">
           <div className="flex gap-4">
