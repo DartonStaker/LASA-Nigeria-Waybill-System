@@ -27,6 +27,14 @@ A Next.js App Router project for generating compliant LASA Electronics CC waybil
 
 3. Open [http://localhost:3000](http://localhost:3000) to use the waybill generator.
 
+### Authentication
+
+- Two demo accounts ship with the app:
+  - `support@lasa.africa` / `@MatCod1!@`
+  - `Lawrence` / `@Nigeria123@`
+- Sessions are stored as signed JWT cookies (8 hour default expiry). Override `AUTH_SECRET`, `AUTH_PASSWORD_SALT`, and `AUTH_SESSION_TTL` in your environment for production.
+- Replace the static list in `src/lib/auth/users.ts` with database-backed auth before going live.
+
 ### Waybill Numbering Options
 
 Configure either **Vercel KV** or **Supabase** (or both) for persistent counters. If neither service is configured, the API falls back to an in-memory counter and timestamp-based numbers for local development.
