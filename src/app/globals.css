@@ -59,26 +59,27 @@
   }
 
   .waybill-sheet {
-    width: min(100%, 794px);
+    width: min(100%, 210mm);
     margin-inline: auto;
-    border-radius: 20px;
-    padding: 32px;
+    border-radius: 18px;
+    padding: 24px;
     background-color: #ffffff;
     position: relative;
   }
 
   @media (max-width: 768px) {
     .waybill-sheet {
-      padding: 20px;
+      padding: 16px;
     }
   }
 
   @media print {
     .waybill-sheet {
       width: 210mm;
-      margin: 0 auto;
-      padding: 18mm;
-      border-radius: 18px;
+      margin: 0;
+      padding: 12mm;
+      border-radius: 16px;
+      box-shadow: none;
     }
   }
 }
