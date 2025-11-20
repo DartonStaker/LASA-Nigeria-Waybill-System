@@ -1,6 +1,6 @@
 export const COMPANY_DETAILS = {
   name: "LASA ELECTRONICS CC",
-  slogan: "Insha-Allah",
+  slogan: "Powering Africa with Quality & Trust",
   addressLines: [
     "28 Angus Crescent",
     "Longmeadow Business Estate",
@@ -13,7 +13,7 @@ export const COMPANY_DETAILS = {
   phone: "Phone: +27 11 089 8888",
 };
 
-export const COMPANY_LOGO_PATH = "/lasa-logo.svg";
+export const COMPANY_LOGO_PATH = "/lasa-logo.png";
 
 export const COMPANY_EMAIL = "support@lasa.africa";
 
