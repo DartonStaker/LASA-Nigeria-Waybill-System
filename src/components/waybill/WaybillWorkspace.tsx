@@ -124,10 +124,10 @@ export default function WaybillWorkspace({ user }: WaybillWorkspaceProps) {
             Preview
           </button>
         </div>
-        <div className="flex flex-1 flex-col gap-6 lg:flex-row">
+        <div className="flex flex-1 flex-col gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-[1.2fr_1fr]">
           <div
             className={cn(
-              "w-full lg:max-w-xl",
+              "w-full",
               activePane === "preview" ? "hidden lg:block" : "block",
             )}
           >

@@ -178,62 +178,87 @@ export default function WaybillForm({
                     )}
                   >
                     <td className="px-3 py-2 align-top">
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-input min-w-[70px]"
-                        {...register(`goods.${index}.quantity`, {
-                          valueAsNumber: true,
-                        })}
-                      />
-                      <FieldError
-                        message={errors.goods?.[index]?.quantity?.message}
-                      />
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500 md:hidden">
+                          Qty
+                        </span>
+                        <input
+                          type="number"
+                          min={1}
+                          className="form-input w-full"
+                          {...register(`goods.${index}.quantity`, {
+                            valueAsNumber: true,
+                          })}
+                        />
+                        <FieldError
+                          message={errors.goods?.[index]?.quantity?.message}
+                        />
+                      </div>
                     </td>
                     <td className="px-3 py-2 align-top">
-                      <input
-                        type="text"
-                        className="form-input min-w-[140px]"
-                        placeholder="Cartons, bags..."
-                        {...register(`goods.${index}.packageType`)}
-                      />
-                      <FieldError
-                        message={errors.goods?.[index]?.packageType?.message}
-                      />
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500 md:hidden">
+                          Package Type
+                        </span>
+                        <input
+                          type="text"
+                          className="form-input w-full"
+                          placeholder="Cartons, bags..."
+                          {...register(`goods.${index}.packageType`)}
+                        />
+                        <FieldError
+                          message={errors.goods?.[index]?.packageType?.message}
+                        />
+                      </div>
                     </td>
                     <td className="px-3 py-2 align-top">
-                      <textarea
-                        rows={3}
-                        className="form-textarea min-w-[220px]"
-                        placeholder="Detailed item description"
-                        {...register(`goods.${index}.description`)}
-                      />
-                      <FieldError
-                        message={errors.goods?.[index]?.description?.message}
-                      />
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500 md:hidden">
+                          Detailed Description
+                        </span>
+                        <textarea
+                          rows={3}
+                          className="form-textarea w-full"
+                          placeholder="Detailed item description"
+                          {...register(`goods.${index}.description`)}
+                        />
+                        <FieldError
+                          message={errors.goods?.[index]?.description?.message}
+                        />
+                      </div>
                     </td>
                     <td className="px-3 py-2 align-top">
-                      <textarea
-                        rows={3}
-                        className="form-textarea min-w-[180px]"
-                        placeholder="Serial numbers"
-                        {...register(`goods.${index}.serialNumbers`)}
-                      />
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500 md:hidden">
+                          Serial / Chassis No.
+                        </span>
+                        <textarea
+                          rows={3}
+                          className="form-textarea w-full"
+                          placeholder="Serial numbers"
+                          {...register(`goods.${index}.serialNumbers`)}
+                        />
+                      </div>
                     </td>
                     <td className="px-3 py-2 align-top">
-                      <input
-                        type="number"
-                        min={0}
-                        step="0.01"
-                        className="form-input min-w-[140px]"
-                        placeholder="0.00"
-                        {...register(`goods.${index}.value`, {
-                          valueAsNumber: true,
-                        })}
-                      />
-                      <FieldError
-                        message={errors.goods?.[index]?.value?.message}
-                      />
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500 md:hidden">
+                          Value (NGN)
+                        </span>
+                        <input
+                          type="number"
+                          min={0}
+                          step="0.01"
+                          className="form-input w-full"
+                          placeholder="0.00"
+                          {...register(`goods.${index}.value`, {
+                            valueAsNumber: true,
+                          })}
+                        />
+                        <FieldError
+                          message={errors.goods?.[index]?.value?.message}
+                        />
+                      </div>
                     </td>
                     <td className="px-3 py-2 text-right align-top">
                       {goodsArray.fields.length > 1 && (
