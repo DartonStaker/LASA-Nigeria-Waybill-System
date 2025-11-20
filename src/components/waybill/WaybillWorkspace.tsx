@@ -10,6 +10,7 @@ import {
 } from "@/lib/numbering";
 import { downloadWaybillPdf } from "@/lib/pdf";
 import type { SessionUser } from "@/lib/auth/users";
+import { cn } from "@/lib/utils";
 
 import WaybillForm from "./WaybillForm";
 import WaybillPreview from "./WaybillPreview";
@@ -38,6 +39,7 @@ export default function WaybillWorkspace({ user }: WaybillWorkspaceProps) {
   const [formValues, setFormValues] = useState<WaybillFormValues>(() =>
     createDefaultWaybillValues(formatWaybillNumber(0)),
   );
+  const [activePane, setActivePane] = useState<"form" | "preview">("form");
 
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -72,6 +74,7 @@ export default function WaybillWorkspace({ user }: WaybillWorkspaceProps) {
     if (previewRef.current) {
       await downloadWaybillPdf(previewRef.current, values.waybillNumber);
     }
+    setActivePane("preview");
   };
 
   const manualNumber = useMemo(() => {
@@ -95,15 +98,53 @@ export default function WaybillWorkspace({ user }: WaybillWorkspaceProps) {
           </div>
           <LogoutButton />
         </div>
+        <div className="flex rounded-2xl border border-slate-200 bg-white p-1 shadow-sm lg:hidden">
+          <button
+            type="button"
+            onClick={() => setActivePane("form")}
+            className={cn(
+              "flex-1 rounded-xl px-4 py-2 text-sm font-semibold transition",
+              activePane === "form"
+                ? "bg-emerald-600 text-white shadow"
+                : "text-slate-600 hover:bg-slate-100",
+            )}
+          >
+            Form
+          </button>
+          <button
+            type="button"
+            onClick={() => setActivePane("preview")}
+            className={cn(
+              "flex-1 rounded-xl px-4 py-2 text-sm font-semibold transition",
+              activePane === "preview"
+                ? "bg-emerald-600 text-white shadow"
+                : "text-slate-600 hover:bg-slate-100",
+            )}
+          >
+            Preview
+          </button>
+        </div>
         <div className="flex flex-1 flex-col gap-6 lg:flex-row">
-          <WaybillForm
-            initialValues={initialValues}
-            onValuesChange={handleValuesChange}
-            onValidSubmit={handleValidSubmit}
-            isFetchingWaybillNumber={isLoading}
-            fetchError={Boolean(error)}
-          />
-          <div className="flex flex-1 flex-col gap-4">
+          <div
+            className={cn(
+              "w-full lg:max-w-xl",
+              activePane === "preview" ? "hidden lg:block" : "block",
+            )}
+          >
+            <WaybillForm
+              initialValues={initialValues}
+              onValuesChange={handleValuesChange}
+              onValidSubmit={handleValidSubmit}
+              isFetchingWaybillNumber={isLoading}
+              fetchError={Boolean(error)}
+            />
+          </div>
+          <div
+            className={cn(
+              "flex flex-1 flex-col gap-4",
+              activePane === "form" ? "hidden lg:flex" : "flex",
+            )}
+          >
             <div className="flex items-center justify-between rounded-2xl border border-dashed border-emerald-400 bg-emerald-50 px-5 py-4">
               <div>
                 <p className="text-xs font-semibold uppercase text-emerald-700">

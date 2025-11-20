@@ -23,9 +23,9 @@ export function formatCurrency(amount?: number | null) {
     return "";
   }
 
-  return new Intl.NumberFormat("en-ZA", {
+  return new Intl.NumberFormat("en-NG", {
     style: "currency",
-    currency: "ZAR",
+    currency: "NGN",
     minimumFractionDigits: 2,
   }).format(amount);
 }

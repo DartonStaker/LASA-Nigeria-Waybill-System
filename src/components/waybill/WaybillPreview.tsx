@@ -137,7 +137,7 @@ const WaybillPreview = forwardRef<HTMLDivElement, WaybillPreviewProps>(
                   <th className="px-3 py-2 text-left">Package</th>
                   <th className="px-3 py-2 text-left">Description</th>
                   <th className="px-3 py-2 text-left">Serial / Chassis No.</th>
-                  <th className="px-3 py-2 text-right">Value (ZAR)</th>
+                  <th className="px-3 py-2 text-right">Value (NGN)</th>
                 </tr>
               </thead>
               <tbody>
