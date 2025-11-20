@@ -26,8 +26,8 @@ export async function downloadWaybillPdf(
     height: canvas.height,
   };
 
-  const marginX = 2;
-  const marginY = 6;
+  const marginX = 1.5;
+  const marginY = 4;
 
   const ratio = Math.min(
     (pdfWidth - marginX * 2) / imgProps.width,

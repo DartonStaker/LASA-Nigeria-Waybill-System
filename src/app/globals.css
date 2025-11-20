@@ -62,14 +62,14 @@
     width: min(100%, 210mm);
     margin-inline: auto;
     border-radius: 18px;
-    padding: 24px;
+    padding: 20px;
     background-color: #ffffff;
     position: relative;
   }
 
   @media (max-width: 768px) {
     .waybill-sheet {
-      padding: 16px;
+      padding: 14px;
     }
   }
 
@@ -77,8 +77,8 @@
     .waybill-sheet {
       width: 210mm;
       margin: 0;
-      padding: 12mm;
-      border-radius: 16px;
+      padding: 6mm;
+      border-radius: 12px;
       box-shadow: none;
     }
   }
