@@ -7,6 +7,7 @@ import {
 
 const PUBLIC_PATHS = ["/login"];
 const PUBLIC_API_PATHS = ["/api/auth/login"];
+const PUBLIC_FILE = /\.(.*)$/;
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -18,7 +19,11 @@ export async function middleware(request: NextRequest) {
     pathname === path || pathname.startsWith(`${path}/`),
   );
 
-  if (pathname.startsWith("/_next") || pathname.startsWith("/favicon.ico")) {
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon.ico") ||
+    PUBLIC_FILE.test(pathname)
+  ) {
     return NextResponse.next();
   }
 

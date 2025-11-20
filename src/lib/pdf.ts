@@ -12,7 +12,6 @@ export async function downloadWaybillPdf(
 ) {
   const canvas = await html2canvas(element, {
     scale: 2,
-    useCORS: true,
     backgroundColor: "#ffffff",
     logging: false,
   });
