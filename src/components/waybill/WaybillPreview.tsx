@@ -26,7 +26,7 @@ const WaybillPreview = forwardRef<HTMLDivElement, WaybillPreviewProps>(
     return (
       <div
         ref={ref}
-        className="w-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm print:border-black print:shadow-none"
+        className="pdf-ready w-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm print:border-black print:shadow-none"
       >
         <header className="flex flex-col gap-4 border-b border-dashed border-slate-300 pb-4 md:flex-row md:items-start md:justify-between">
           <div className="flex gap-4">
@@ -63,7 +63,9 @@ const WaybillPreview = forwardRef<HTMLDivElement, WaybillPreviewProps>(
               <p className="text-xs uppercase tracking-widest text-slate-500">
                 Official Document
               </p>
-              <p className="text-3xl font-semibold text-slate-900">WAYBILL</p>
+              <p className="text-3xl font-semibold text-slate-900">
+                WAYBILL
+              </p>
               <p className="mt-1 rounded-md bg-slate-100 px-3 py-1 text-sm font-semibold uppercase tracking-wide text-slate-800">
                 {data.waybillNumber}
               </p>
