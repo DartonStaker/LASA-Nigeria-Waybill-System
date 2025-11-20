@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import {
   type UseFormRegister,
   useFieldArray,
@@ -156,7 +156,7 @@ export default function WaybillForm({
           Goods Description
         </legend>
         <div className="space-y-4 p-4">
-          <div className="overflow-hidden rounded-xl border border-slate-200">
+          <div className="overflow-x-auto rounded-xl border border-slate-200">
             <table className="min-w-full border-collapse text-sm">
               <thead className="bg-slate-100 text-xs uppercase tracking-wide text-slate-600">
                 <tr>
@@ -170,176 +170,83 @@ export default function WaybillForm({
               </thead>
               <tbody>
                 {goodsArray.fields.map((field, index) => (
-                  <Fragment key={field.id}>
-                    <tr
-                      className={cn(
-                        "hidden border-b border-slate-100 last:border-b-0 md:table-row",
-                        index % 2 === 0 ? "bg-white" : "bg-slate-50",
+                  <tr
+                    key={field.id}
+                    className={cn(
+                      "border-b border-slate-100 last:border-b-0",
+                      index % 2 === 0 ? "bg-white" : "bg-slate-50",
+                    )}
+                  >
+                    <td className="px-3 py-2 align-top">
+                      <input
+                        type="number"
+                        min={1}
+                        className="form-input min-w-[70px]"
+                        {...register(`goods.${index}.quantity`, {
+                          valueAsNumber: true,
+                        })}
+                      />
+                      <FieldError
+                        message={errors.goods?.[index]?.quantity?.message}
+                      />
+                    </td>
+                    <td className="px-3 py-2 align-top">
+                      <input
+                        type="text"
+                        className="form-input min-w-[140px]"
+                        placeholder="Cartons, bags..."
+                        {...register(`goods.${index}.packageType`)}
+                      />
+                      <FieldError
+                        message={errors.goods?.[index]?.packageType?.message}
+                      />
+                    </td>
+                    <td className="px-3 py-2 align-top">
+                      <textarea
+                        rows={3}
+                        className="form-textarea min-w-[220px]"
+                        placeholder="Detailed item description"
+                        {...register(`goods.${index}.description`)}
+                      />
+                      <FieldError
+                        message={errors.goods?.[index]?.description?.message}
+                      />
+                    </td>
+                    <td className="px-3 py-2 align-top">
+                      <textarea
+                        rows={3}
+                        className="form-textarea min-w-[180px]"
+                        placeholder="Serial numbers"
+                        {...register(`goods.${index}.serialNumbers`)}
+                      />
+                    </td>
+                    <td className="px-3 py-2 align-top">
+                      <input
+                        type="number"
+                        min={0}
+                        step="0.01"
+                        className="form-input min-w-[140px]"
+                        placeholder="0.00"
+                        {...register(`goods.${index}.value`, {
+                          valueAsNumber: true,
+                        })}
+                      />
+                      <FieldError
+                        message={errors.goods?.[index]?.value?.message}
+                      />
+                    </td>
+                    <td className="px-3 py-2 text-right align-top">
+                      {goodsArray.fields.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => goodsArray.remove(index)}
+                          className="rounded-md bg-rose-100 px-3 py-2 text-xs font-semibold text-rose-600 transition hover:bg-rose-200"
+                        >
+                          Remove
+                        </button>
                       )}
-                    >
-                      <td className="px-3 py-2 align-top">
-                        <input
-                          type="number"
-                          min={1}
-                          className="form-input"
-                          {...register(`goods.${index}.quantity`, {
-                            valueAsNumber: true,
-                          })}
-                        />
-                        <FieldError
-                          message={errors.goods?.[index]?.quantity?.message}
-                        />
-                      </td>
-                      <td className="px-3 py-2 align-top">
-                        <input
-                          type="text"
-                          className="form-input"
-                          {...register(`goods.${index}.packageType`)}
-                        />
-                        <FieldError
-                          message={errors.goods?.[index]?.packageType?.message}
-                        />
-                      </td>
-                      <td className="px-3 py-2 align-top">
-                        <textarea
-                          rows={3}
-                          className="form-textarea"
-                          {...register(`goods.${index}.description`)}
-                        />
-                        <FieldError
-                          message={errors.goods?.[index]?.description?.message}
-                        />
-                      </td>
-                      <td className="px-3 py-2 align-top">
-                        <textarea
-                          rows={3}
-                          className="form-textarea"
-                          {...register(`goods.${index}.serialNumbers`)}
-                        />
-                      </td>
-                      <td className="px-3 py-2 align-top">
-                        <input
-                          type="number"
-                          min={0}
-                          step="0.01"
-                          className="form-input"
-                          placeholder="0.00"
-                          {...register(`goods.${index}.value`, {
-                            valueAsNumber: true,
-                          })}
-                        />
-                        <FieldError
-                          message={errors.goods?.[index]?.value?.message}
-                        />
-                      </td>
-                      <td className="px-3 py-2 text-right align-top">
-                        {goodsArray.fields.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => goodsArray.remove(index)}
-                            className="rounded-md bg-rose-100 px-3 py-2 text-xs font-semibold text-rose-600 transition hover:bg-rose-200"
-                          >
-                            Remove
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                    <tr className="md:hidden">
-                      <td colSpan={6} className="px-3 py-3">
-                        <div className="space-y-3 rounded-xl border border-slate-200 p-4 shadow-sm">
-                          <div className="grid grid-cols-2 gap-3">
-                            <div>
-                              <label className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                                Qty
-                              </label>
-                              <input
-                                type="number"
-                                min={1}
-                                className="form-input mt-1"
-                                {...register(`goods.${index}.quantity`, {
-                                  valueAsNumber: true,
-                                })}
-                              />
-                              <FieldError
-                                message={
-                                  errors.goods?.[index]?.quantity?.message
-                                }
-                              />
-                            </div>
-                            <div>
-                              <label className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                                Package
-                              </label>
-                              <input
-                                type="text"
-                                className="form-input mt-1"
-                                {...register(`goods.${index}.packageType`)}
-                              />
-                              <FieldError
-                                message={
-                                  errors.goods?.[index]?.packageType?.message
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div>
-                            <label className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                              Description
-                            </label>
-                            <textarea
-                              rows={3}
-                              className="form-textarea mt-1"
-                              {...register(`goods.${index}.description`)}
-                            />
-                            <FieldError
-                              message={
-                                errors.goods?.[index]?.description?.message
-                              }
-                            />
-                          </div>
-                          <div>
-                            <label className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                              Serial / Chassis No.
-                            </label>
-                            <textarea
-                              rows={2}
-                              className="form-textarea mt-1"
-                              {...register(`goods.${index}.serialNumbers`)}
-                            />
-                          </div>
-                          <div>
-                            <label className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                              Value (NGN)
-                            </label>
-                            <input
-                              type="number"
-                              min={0}
-                              step="0.01"
-                              className="form-input mt-1"
-                              placeholder="0.00"
-                              {...register(`goods.${index}.value`, {
-                                valueAsNumber: true,
-                              })}
-                            />
-                            <FieldError
-                              message={errors.goods?.[index]?.value?.message}
-                            />
-                          </div>
-                          {goodsArray.fields.length > 1 && (
-                            <div className="flex justify-end">
-                              <button
-                                type="button"
-                                onClick={() => goodsArray.remove(index)}
-                                className="rounded-md bg-rose-100 px-3 py-2 text-xs font-semibold text-rose-600 transition hover:bg-rose-200"
-                              >
-                                Remove item
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  </Fragment>
+                    </td>
+                  </tr>
                 ))}
               </tbody>
             </table>
