@@ -26,11 +26,17 @@ export async function downloadWaybillPdf(
     height: canvas.height,
   };
 
-  const ratio = Math.min(pdfWidth / imgProps.width, pdfHeight / imgProps.height);
+  const marginX = 12;
+  const marginY = 18;
+
+  const ratio = Math.min(
+    (pdfWidth - marginX * 2) / imgProps.width,
+    (pdfHeight - marginY * 2) / imgProps.height,
+  );
   const renderWidth = imgProps.width * ratio;
   const renderHeight = imgProps.height * ratio;
   const offsetX = (pdfWidth - renderWidth) / 2;
-  const offsetY = 10;
+  const offsetY = marginY;
 
   for (let copyIndex = 0; copyIndex < copyCount; copyIndex += 1) {
     if (copyIndex > 0) {
@@ -54,8 +60,11 @@ export async function downloadWaybillPdf(
       `Generated from LASA Electronics Waybill System • ${new Date()
         .toISOString()
         .slice(0, 10)}`,
-      offsetX,
-      pdfHeight - 10,
+      pdfWidth / 2,
+      pdfHeight - marginY / 2,
+      {
+        align: "center",
+      },
     );
   }
 
