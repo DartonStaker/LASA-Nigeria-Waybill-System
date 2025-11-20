@@ -1,0 +1,15 @@
+<svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LASA Electronics Logo Placeholder</title>
+  <desc id="desc">Stylised geometric placeholder logo for LASA Electronics CC.</desc>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="24" fill="url(#grad)" />
+  <path d="M40 110 L40 50 L60 50 L60 94 L100 94 L100 110 Z" fill="#f0fdf4" />
+  <path d="M70 50 L120 50 L120 110 L100 110 L100 66 L70 66 Z" fill="#ecfdf5" />
+  <circle cx="52" cy="62" r="8" fill="#bbf7d0" />
+</svg>
+
