@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import {
+  type Resolver,
   type UseFormRegister,
   useFieldArray,
   useForm,
@@ -28,7 +29,7 @@ export default function WaybillForm({
   fetchError,
 }: WaybillFormProps) {
   const form = useForm<WaybillFormValues>({
-    resolver: zodResolver(waybillSchema),
+    resolver: zodResolver(waybillSchema) as Resolver<WaybillFormValues>,
     mode: "onChange",
     defaultValues: initialValues,
   });
